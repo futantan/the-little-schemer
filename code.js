@@ -5,7 +5,7 @@ const quote = () => []
 
 const car = (l) => l[0]
 const cdr = (l) => l.slice(1)
-const cons = (a, l) => {console.log(l);return[a, ...l]}
+const cons = (a, l) => [a, ...l]
 
 // Are all items in list are atoms?
 const isLat = (l) =>
@@ -76,3 +76,27 @@ const multirember = (a, lat) =>
       ? multirember(a, cdr(lat))
       : cons(car(lat), multirember(a, cdr(lat))))
 // multirember('cup', ['coffee', 'cup', 'tea', 'cup', 'and', 'hick', 'cup']) //?
+
+const isZero = (v) => v === 0
+const add1 = (v) => v + 1
+const sub1 = (v) => v - 1
+
+const add = (n, m) =>
+  isZero(m)
+    ? n
+    : add1(add(n, sub1(m)))
+
+// add(3, 4) //?
+
+const addup = (tup) =>
+  isNull(tup)
+    ? 0
+    : add(car(tup), addup(cdr(tup)))
+
+// addup([1,2,3,4,5])//?
+
+const multiply = (n, m) =>
+  isZero(m)
+    ? 0
+    : add(n, multiply(n, sub1(m)))
+// multiply(3, 4) //?
